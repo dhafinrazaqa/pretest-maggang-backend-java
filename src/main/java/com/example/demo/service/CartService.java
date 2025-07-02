@@ -88,9 +88,6 @@ public class CartService {
             cart.addCartItem(cartItem);
         }
 
-        product.setStock(product.getStock() - cartItem.getQuantity());
-        productRepository.save(product);
-
         cartItemRepository.save(cartItem);
 
         Cart updatedCart = cartRepository.save(cart);
@@ -106,9 +103,6 @@ public class CartService {
         if (existingCartItem.isPresent()) {
             CartItem cartItem = existingCartItem.get();
             Product product = cartItem.getProduct();
-
-            product.setStock(product.getStock() + cartItem.getQuantity());
-            productRepository.save(product);
 
             cart.removeCartItem(cartItem);
             cartItemRepository.delete(cartItem);
@@ -146,9 +140,6 @@ public class CartService {
                 throw new RuntimeException("Not enough stock for product: " + product.getName()
                         + ". Available after current items: " + (product.getStock() + oldQuantity - newQuantity));
             }
-
-            product.setStock(product.getStock() + oldQuantity - newQuantity);
-            productRepository.save(product);
 
             cartItem.setQuantity(newQuantity);
             cartItemRepository.save(cartItem);
