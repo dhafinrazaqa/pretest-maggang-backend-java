@@ -73,7 +73,7 @@ Aplikasi backend e-commerce sederhana. Fitur utama:
          hibernate:
            format_sql: true
    ```
-3. Jalankan aplikasi melalui `DemoApplication.java`
+3. Jalankan aplikasi melalui `EcommerceApplication.java`
 4. Akses API di: `http://localhost:8080/api`
 
 ## Endpoint Utama
